@@ -1,0 +1,111 @@
+/* About uses its own editorial scale while sharing the portfolio palette. */
+.duda-about {
+  --duda-gutter: clamp(20px, 4.93vw, 96px);
+  --duda-rule: color-mix(in srgb, var(--cream) 19%, var(--midnight));
+  color: var(--text);
+  font: 400 16px/1.55 var(--sans);
+}
+.duda-hero {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 220px var(--duda-gutter) 96px;
+}
+.duda-title {
+  display: grid;
+  justify-items: center;
+  font-size: clamp(38px, 9vw, 170px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -.045em;
+}
+.duda-title-line { display: flex; justify-content: center; gap: .23em; }
+.duda-title-word { display: inline-flex; }
+.duda-letter { position: relative; }
+.duda-letter img {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: clamp(58px, 14vw, 220px);
+  max-width: none;
+  aspect-ratio: 1;
+  border-radius: clamp(6px, 1vw, 15px);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform .5s cubic-bezier(.22, 1, .36, 1);
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {
+  .duda-letter:hover img { transform: translate(-50%, -50%) scale(1); }
+}
+.duda-letter[data-active='true'] img { transform: translate(-50%, -50%) scale(1); }
+
+.duda-content { padding: 0 var(--duda-gutter) clamp(88px, 10vw, 140px); }
+.duda-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
+.duda-intro { border-top: 1px solid var(--duda-rule); padding: 28px 0 56px; }
+.duda-portrait { width: min(100%, 340px); height: auto; aspect-ratio: 4 / 5; object-position: 50% 30%; border-radius: 9px; }
+.duda-profile h2 { font-size: 22px; line-height: 1.32; font-weight: 400; }
+.duda-profile p { margin-top: 6px; font-size: 14px; }
+.duda-profile p, .duda-muted, .duda-meta { color: var(--muted); }
+.duda-profile-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 17px; font-size: 14px; }
+.duda-profile-links > span { color: var(--label); }
+.duda-profile-links a { transition: color .3s ease; }
+.duda-profile-links a:is(:hover, :focus-visible) { color: var(--muted); text-decoration: underline; text-underline-offset: .23em; }
+.duda-copy { font-size: clamp(16px, 1.32vw, 19px); line-height: 1.65; }
+.duda-copy p + p { margin-top: 20px; }
+.duda-copy p.duda-muted { margin-top: 5px; font-size: 15px; }
+
+.duda-section { padding-top: clamp(44px, 5vw, 72px); }
+.duda-section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid var(--duda-rule);
+  font-size: 14px;
+  line-height: 1.35;
+  color: var(--muted);
+  font-weight: 400;
+}
+.duda-section-title svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform .3s ease, color .3s ease;
+}
+.duda-section-title:hover svg { color: var(--text); transform: translateY(-2px); }
+.duda-row { align-items: start; padding: 28px 0; border-bottom: 1px solid var(--duda-rule); }
+.duda-row h3 { grid-column: 2; font-size: clamp(18px, 1.4vw, 20px); line-height: 1.45; font-weight: 400; }
+.duda-row > :is(.duda-copy, .duda-directory) { grid-column: 3; }
+.duda-meta { grid-column: 1; font-size: 14px; }
+.duda-directory { display: grid; gap: 9px 20px; padding: 0; margin: 0; list-style: none; }
+.duda-tools li { display: flex; align-items: center; gap: 9px; min-height: 26px; }
+.duda-tool-logo { width: 20px; height: 20px; flex: 0 0 20px; object-fit: contain; transition: transform .3s ease; }
+.duda-tool-logo:is([src$="/github.svg"], [src$="/chatgpt.svg"], [src$="/wordpress.svg"], [src$="/elementor.svg"]) { filter: brightness(0) invert(1); }
+.duda-tools li:hover .duda-tool-logo { transform: translateY(-2px); }
+.duda-languages { grid-column: 2 / -1; width: 100%; list-style: none; padding: 0; margin: 0; }
+.duda-languages li + li { border-top: 1px solid var(--duda-rule); margin-top: 10px; padding-top: 10px; }
+
+.duda-about[data-reveal] .duda-reveal { transition: opacity .8s ease, transform .8s ease; }
+.duda-about[data-reveal] .duda-reveal:not([data-entered]) { opacity: 0; transform: translateY(24px); }
+.duda-about[data-reveal] .duda-reveal:focus-within { opacity: 1; transform: none; transition: none; }
+@media (min-width: 1120px) {
+  .duda-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 699px) {
+  .duda-about { --duda-gutter: max(20px, 6vw); }
+  .duda-hero { padding-top: 140px; }
+  .duda-grid { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  .duda-intro { gap: 23px; }
+  .duda-profile h2 { font-size: 19px; }
+  .duda-row > :is(h3, .duda-copy, .duda-directory, .duda-languages) { grid-column: 1; }
+  .duda-directory { gap: 7px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .duda-letter img { display: none; }
+  .duda-section-title:hover svg, .duda-tools li:hover .duda-tool-logo { transform: none; }
+}

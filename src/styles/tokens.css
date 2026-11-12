@@ -1,0 +1,29 @@
+:root {
+  --midnight: #010736;
+  --navy: #0d1c42;
+  --blue: #22396f;
+  --cream: #fcf1d0;
+  --bg: var(--midnight);
+  --surface: var(--navy);
+  --text: var(--cream);
+  --muted: color-mix(in srgb, var(--cream) 80%, var(--blue));
+  --subtle: color-mix(in srgb, var(--cream) 72%, var(--blue));
+  --label: color-mix(in srgb, var(--cream) 65%, var(--blue));
+  --faint: var(--label);
+  --accent: var(--cream);
+  --accent-fill: var(--cream);
+  --on-accent: var(--midnight);
+  --hairline: color-mix(in srgb, var(--blue) 68%, transparent);
+  --outline: color-mix(in srgb, var(--cream) 45%, var(--blue));
+  --gutter: clamp(20px, 4vw, 56px);
+  --header-height: 72px;
+  --sans: 'Audiowide', Arial, sans-serif;
+  --mono: var(--sans);
+
+  color-scheme: dark;
+}
+:root[data-accent='deep'] {
+  --accent: var(--muted);
+  --accent-fill: var(--blue);
+  --on-accent: var(--cream);
+}

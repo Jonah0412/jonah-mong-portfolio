@@ -1,0 +1,150 @@
+/* Home opening. The shared scroller interpolates between the inset and stage. */
+.romans-hero { min-height: 200svh; background: var(--midnight); color: var(--cream); }
+.romans-stage { position: sticky; top: 0; height: 100svh; overflow: clip; isolation: isolate; }
+.romans-composition { height: 100%; display: grid; align-content: center; padding-top: 1.2vh; }
+.romans-desktop-title { display: grid; gap: 1.1vw; }
+.romans-line { display: grid; align-items: stretch; gap: 1.55vw; height: min(10vw, 24svh); }
+.romans-line--first { grid-template-columns: 36fr 64fr; margin-inline: 4.2% 10%; }
+.romans-line--second { grid-template-columns: 24fr 19fr 57fr; margin-inline: 7.3% 2%; }
+.romans-mobile-title { display: none; }
+.romans-piece { display: block; min-width: 0; }
+.romans-piece svg { display: block; width: 100%; height: 100%; overflow: visible; }
+.romans-piece text {
+  fill: currentColor; font-family: var(--sans); font-size: 202px; font-weight: 900;
+  word-spacing: .08em; 
+}
+.romans-hero[data-ready='true'] .romans-piece { animation: romans-rise .62s cubic-bezier(.22,.75,.21,1) both; }
+.romans-hero[data-ready='true'] .romans-line--second .romans-piece { animation-delay: .09s; }
+.romans-hero[data-ready='true'] .romans-mobile-title .romans-piece:nth-child(2) { animation-delay: .06s; }
+.romans-hero[data-ready='true'] .romans-mobile-title .romans-piece:nth-child(3) { animation-delay: .12s; }
+.romans-hero[data-ready='true'] .romans-mobile-title .romans-piece:nth-child(4) { animation-delay: .18s; }
+@keyframes romans-rise { from { transform: translateY(32%); clip-path: inset(0 -10% 100%); } to { transform: none; clip-path: inset(0 -10% -10%); } }
+.romans-bottom { position: absolute; inset: auto 24px 16px; display: flex; align-items: end; justify-content: flex-end; }
+
+.romans-down, .romans-play, .romans-close {
+  display: grid; place-items: center; width: 46px; height: 46px;
+  background: var(--cream); color: var(--midnight); border: 1px solid var(--cream); font-size: 22px; line-height: 1;
+  transition: color .2s, background .2s;
+}
+.romans-hero :is(.romans-down,.romans-play,.romans-close):hover { background: var(--midnight); color: var(--cream); }
+.romans-media { position: absolute; z-index: 2; top: 0; left: 0; width: 0; height: 0; overflow: clip; background: var(--navy); }
+.romans-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.romans-play {
+  position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
+  width: 56px; height: 56px; font-size: 17px; opacity: 0; pointer-events: none;
+}
+.romans-stage[data-expanded='true'] .romans-play, .romans-media:hover .romans-play, .romans-play:focus-visible {
+  opacity: 1; pointer-events: auto;
+}
+.romans-stage[data-expanded='true'] .romans-bottom { visibility: hidden; }
+.romans-dialog { position: fixed; inset: 0; margin: auto; max-width: none; max-height: none; width: 100%; height: 100%; color: inherit; background: transparent; }
+.romans-dialog[open] { display: grid; place-items: center; }
+.romans-dialog::backdrop { background: color-mix(in srgb, var(--midnight) 94%, transparent); }
+.romans-player { position: relative; width: min(90vw, 115vh); }
+.romans-player video { display: block; width: 100%; max-height: 76svh; background: var(--midnight); }
+.romans-close { position: absolute; bottom: calc(100% + 8px); right: 0; z-index: 1; }
+
+/* Work index. Numbered project links use the existing route transition. */
+.givelet-work {
+  color: var(--midnight); background: linear-gradient(to bottom, var(--bg) 0 var(--header-height), var(--cream) var(--header-height) 100%);
+  padding-inline: clamp(16px, 2.5vw, 56px); padding-bottom: clamp(70px, 9vw, 150px); color-scheme: light;
+}
+.givelet-opening { min-height: clamp(340px, 34.8vw, 660px); display: grid; place-items: center; padding-top: 34px; }
+.givelet-opening h1 {
+  display: flex; align-items: center; gap: .17em; white-space: nowrap; font-size: clamp(55px, 8.2vw, 152px);
+  line-height: 1; font-weight: 470; letter-spacing: -.055em;
+}
+.givelet-title-media { position: relative; display: inline-block; width: 1.05em; aspect-ratio: 1; overflow: hidden; border-radius: 3px; }
+.givelet-title-media img { position: absolute; inset: 0; height: 100%; }
+.givelet-title-media img:nth-child(2) { animation: givelet-swap-second 3.6s steps(1,end) infinite; }
+.givelet-title-media img:nth-child(3) { animation: givelet-swap-third 3.6s steps(1,end) infinite; }
+@keyframes givelet-swap-second { 0%, 66.67%, 100% { opacity: 0; } 33.33% { opacity: 1; } }
+@keyframes givelet-swap-third { 0%, 100% { opacity: 0; } 66.67% { opacity: 1; } }
+.givelet-info {
+  min-height: clamp(241px, 22.15vw, 380px); display: grid; grid-template-columns: 1fr minmax(0, .8fr) .2fr;
+  border-top: 1px solid color-mix(in srgb, var(--blue) 32%, var(--cream)); padding-top: 34px; font-size: 14px; line-height: 1.25;
+}
+.givelet-intro { display: grid; grid-template-columns: minmax(38px, 4vw) 1fr; }
+.givelet-intro p { max-width: 31ch; }
+.givelet-year { text-align: right; }
+.givelet-gallery { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 72px 3px; }
+.givelet-card { display: block; }
+.givelet-card:focus-visible { outline-color: var(--blue); outline-offset: -3px; }
+.givelet-image { aspect-ratio: 1.44; overflow: hidden; border-radius: 4px; background: color-mix(in srgb, var(--blue) 10%, var(--cream)); }
+.givelet-image img { height: 100%; }
+.givelet-caption { display: flex; align-items: baseline; gap: 13px; margin-top: 12px; }
+.givelet-caption h2 { font-size: clamp(18px, 1.7vw, 29px); font-weight: 470; line-height: 1.12; letter-spacing: -.037em; }
+.givelet-number, .givelet-type { font-size: 12px; color: var(--blue); }
+.givelet-arrow { display: inline-block; opacity: 0; transform: translateX(-7px); transition: opacity .2s, transform .22s; }
+.givelet-card:is(:hover,:focus-visible) .givelet-arrow { opacity: 1; transform: none; }
+.givelet-type, .givelet-description { margin-top: 5px; }
+.givelet-description { max-width: 48ch; font-size: 14px; line-height: 1.3; }
+.givelet-gallery[data-reduced='false'] .givelet-card--visible .givelet-image { animation: givelet-arrival .5s cubic-bezier(.22,.75,.21,1) both; }
+@keyframes givelet-arrival { from { opacity: .55; transform: translateY(13px); } to { opacity: 1; transform: none; } }
+
+/* Footer. Two identical wordmark tiles make a continuous loop. */
+.collected-footer { --footer-pad: clamp(20px, 2.78vw, 60px); color: var(--cream); background: var(--navy); border-top: 1px solid var(--blue); }
+.collected-panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.collected-contact, .collected-details { min-height: 310px; min-width: 0; padding: var(--footer-pad); }
+.collected-contact {
+  border-right: 1px solid var(--blue); display: flex; flex-direction: column; justify-content: space-between; gap: 45px;
+}
+.collected-contact h2, .collected-details > p { font-size: clamp(24px, 2.35vw, 42px); line-height: 1.02; font-weight: 520; letter-spacing: -.05em; }
+.collected-contact h2 { max-width: 19ch; }
+.collected-label { display: block; margin-bottom: 6px; font: 11px/1.2 var(--mono); color: var(--subtle); text-transform: uppercase; }
+.collected-contact a { display: inline-block; font-size: clamp(24px, 3.12vw, 56px); line-height: 1.03; letter-spacing: -.06em; overflow-wrap: anywhere; }
+.collected-details { display: flex; flex-direction: column; justify-content: space-between; gap: 32px; }
+.collected-links { display: flex; flex-wrap: wrap; gap: 10px 19px; align-items: baseline; color: var(--subtle); font: 12px/1.25 var(--mono); }
+.collected-links a, .collected-links button, .collected-contact a { transition: color .2s; }
+.collected-links :is(a,button):hover { color: var(--cream); }
+.collected-contact a:hover { color: var(--subtle); }
+
+.collected-wordmark { background: var(--midnight); overflow: clip; border-top: 1px solid var(--blue); padding-block: clamp(26px, 3.05vw, 62px); }
+.collected-wordmark-track { --tile: max(130vw, 1400px); display: flex; width: max-content; animation: marquee 37.44s linear infinite; }
+.collected-wordmark svg { display: block; flex: 0 0 var(--tile); width: var(--tile); height: auto; }
+.collected-wordmark text { fill: currentColor; font: 900 288px/1 var(--sans); }
+.collected-footer:is(:hover, :focus-within) .collected-wordmark-track { animation-play-state: paused; }
+
+@media (max-width: 1077px) {
+  .collected-wordmark-track { animation-duration: 28s; }
+}
+@media (max-width: 799px) {
+  .romans-hero { min-height: auto; }
+  .romans-stage { position: relative; height: auto; }
+  .romans-composition { position: relative; height: max(75svh, 450px); padding-top: 0; }
+  .romans-desktop-title { display: none; }
+  .romans-mobile-title { display: grid; justify-items: center; gap: clamp(4px, 1.55vw, 12px); }
+  .romans-mobile-title .romans-piece { height: clamp(38px, 13.2vw, 84px); }
+  .romans-mobile-title .romans-piece:nth-child(1) { width: min(44%, 255px); }
+  .romans-mobile-title .romans-piece:nth-child(2) { width: min(73%, 430px); }
+  .romans-mobile-title .romans-piece:nth-child(3) { width: min(52%, 310px); }
+  .romans-mobile-title .romans-piece:nth-child(4) { width: min(48%, 285px); }
+  .romans-bottom { bottom: 30px; justify-content: center; }
+
+  .romans-media { position: relative; width: 100%; height: auto; aspect-ratio: 1; }
+  .romans-play { opacity: 1; pointer-events: auto; visibility: visible; }
+  .collected-panels { display: block; }
+  .collected-contact { min-height: 245px; border-right: 0; border-bottom: 1px solid var(--blue); }
+  .collected-details { min-height: 200px; }
+
+
+  .collected-links { gap: 12px 16px; }
+}
+@media (max-width: 699px) {
+  .givelet-opening { min-height: 297px; padding-top: 50px; }
+  .givelet-opening h1 { font-size: 9.8vw; }
+  .givelet-info { grid-template-columns: 1fr 1.6fr auto; gap: 11px; padding-top: 19px; font-size: 12px; }
+  .givelet-intro { grid-template-columns: 24px 1fr; }
+  .givelet-gallery { grid-template-columns: 1fr; row-gap: 34px; }
+  .givelet-image { aspect-ratio: 1.53; }
+  .givelet-caption { margin-top: 9px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .romans-hero { min-height: auto; }
+  .romans-stage { position: relative; }
+  .romans-hero[data-ready='true'] .romans-piece { animation: none; }
+  .romans-play { opacity: 1; pointer-events: auto; visibility: visible; }
+  .givelet-title-media img:nth-child(n+2) { display: none; }
+  .collected-wordmark-track { animation: none; }
+
+}
