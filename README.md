@@ -31,10 +31,12 @@ See the asset manifest for project imagery and software logo attribution.
 
 ## Public website
 
-[Jonah Mong — Design & Web](https://jonah-mong-portfolio.mongjonah1229.chatgpt.site)
+[Jonah Mong — Design & Web](https://jonah0412.github.io/jonah-mong-portfolio/)
 
 ## Editing
 
 Page components are in `src/pages/`, shared elements in `src/components/`, and artwork in `public/assets/`. Run `pnpm build` after editing to check TypeScript and regenerate the website.
 
-This repository is exported from the published Sites version 6, source commit `2df510a8108e791a8b61dd8e86ae57c95c0174fe`. Publish the updated source through Sites to update the public website.
+GitHub Pages hosts this website. Every push to `main` runs `.github/workflows/pages.yml`, installs the locked dependencies, builds the portfolio, and publishes `dist/`. Check the Actions tab for deployment progress.
+
+The source was originally exported from Sites version 6, commit `2df510a8108e791a8b61dd8e86ae57c95c0174fe`.
