@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { asset } from '../../content';
 import { clamp, useEngine, type Frame } from '../../hooks/useMotionEngine';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { useScrollProgress, type SectionMeasure } from '../../hooks/useScrollProgress';
 
-const showreelUrl = 'https://www.youtube-nocookie.com/embed/bVgXd0g_2ns?autoplay=1&rel=0&playsinline=1';
-const reel = `${import.meta.env.BASE_URL}assets/portfolio-reel.mp4`;
+const loop = `${import.meta.env.BASE_URL}assets/showreel-loop.mp4`;
+const reel = `${import.meta.env.BASE_URL}assets/showreel.mp4`;
+const poster = `${import.meta.env.BASE_URL}assets/showreel-poster.webp`;
 
 function TitlePiece({ text, width, slant = false }: { text: string; width: number; slant?: boolean }) {
   return (
@@ -27,7 +28,7 @@ export function RomansHero({ ready }: { ready: boolean }) {
   const media = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const player = useRef<HTMLDialogElement>(null);
-  const [showreelOpen, setShowreelOpen] = useState(false);
+  const fullVideo = useRef<HTMLVideoElement>(null);
   const play = useRef<HTMLButtonElement>(null);
   const viewport = useRef({ width: 0, height: 0 });
   const geometry = useRef({ left: 0, top: 0, width: 0, height: 0 });
@@ -116,7 +117,7 @@ export function RomansHero({ ready }: { ready: boolean }) {
     player.current?.showModal();
     engine.lock(true);
     video.current?.pause();
-    setShowreelOpen(true);
+    if (!reduced) void fullVideo.current?.play().catch(() => {});
   }
 
   return (
@@ -138,21 +139,21 @@ export function RomansHero({ ready }: { ready: boolean }) {
           </div>
         </div>
         <div className="romans-media" ref={media}>
-          <video ref={video} src={reel} poster={asset('artstronomy')} muted loop playsInline preload={reduced ? 'none' : 'metadata'} aria-hidden="true" />
+          <video ref={video} src={loop} poster={poster} muted loop playsInline preload={reduced ? 'none' : 'metadata'} aria-hidden="true" />
           <button ref={play} type="button" onClick={openReel} className="romans-play" aria-label="Play the showreel"><span aria-hidden="true">▶</span></button>
         </div>
       </div>
       <dialog ref={player} className="romans-dialog" aria-label="Showreel" onClick={event => {
         if (event.target === event.currentTarget) player.current?.close();
       }} onClose={() => {
-        setShowreelOpen(false);
+        fullVideo.current?.pause();
         engine.lock(false);
         updatePlayback();
         play.current?.focus({ preventScroll: true });
       }}>
         <div className="romans-player">
           <button type="button" className="romans-close" onClick={() => player.current?.close()} aria-label="Close the reel">×</button>
-          {showreelOpen && <iframe src={showreelUrl} title="Mong Foo Yuen showreel" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen referrerPolicy="strict-origin-when-cross-origin" />}
+          <video ref={fullVideo} src={reel} poster={poster} controls playsInline preload="none" aria-label="Mong Foo Yuen showreel" />
         </div>
       </dialog>
     </section>
