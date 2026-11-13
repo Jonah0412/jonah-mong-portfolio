@@ -24,6 +24,9 @@ export function ProjectDetail({ slug }: { slug: string }) {
           <h2 className="mono">(Overview)</h2>
           <TextReveal><h3>{project.headline}</h3><p>{project.summary}</p></TextReveal>
         </section>
+        {project.links && <div className="contact-actions case-links">
+          {project.links.map(link => <a className="button button--blue mono" key={link.href} href={link.href} target="_blank" rel="noopener">{link.label} <span aria-hidden="true">↗</span></a>)}
+        </div>}
         {project.gallery.length > 0 && <div className="case-gallery">
           {project.gallery.map(view => <figure key={view.label}>
             <a href={asset(view.image)} target="_blank" rel="noopener">

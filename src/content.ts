@@ -29,6 +29,7 @@ export function responsiveImage(name: string) {
     srcSet: width ? `${asset(`${name}-480`)} 480w, ${asset(`${name}-800`)} 800w, ${asset(name)} ${width}w` : undefined,
   };
 }
+export const file = (path: string) => `${import.meta.env.BASE_URL}${path}`;
 export const projectPath = (slug: string) => `/work/${slug}`;
 export const number = (n: number) => String(n).padStart(2, '0');
 type View = { image: string; label: string; position?: string; contain?: boolean };
@@ -46,6 +47,7 @@ export type Project = {
   preview: View[];
   gallery: View[];
   sections: { title: string; body: string }[];
+  links?: { label: string; href: string }[];
 };
 
 const webProjects: Project[] = original.map((project) => {
@@ -80,6 +82,8 @@ const webProjects: Project[] = original.map((project) => {
     year: project.slug === 'abangboy' ? '' : '2026',
     summary: project.intro,
     headline: project.heading,
+    links: isExhibition ? [{ label: 'Case study PDF', href: file('pdf/ARTStronomy-2026-Case-Study.pdf') }]
+      : project.slug === 'abangboy' ? [{ label: 'Visit live site', href: 'https://abgboygroup.com/homepage/' }] : undefined,
     cover: isExhibition ? { image: 'cs-cover', label: 'ARTStronomy 2026 case study cover', position: 'center' } : cover,
     preview: isKke ? [gallery[0], cover, gallery[1]] : isExhibition ? [gallery[0], gallery[1], gallery[2]] : [cover, detail],
     gallery,
