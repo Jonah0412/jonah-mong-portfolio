@@ -3,9 +3,9 @@ import { VariableTypography } from '../VariableTypography/VariableTypography';
 
 export function ContactCTA() {
   return <>
-    <div className="footer-label mono">Got something in mind?</div>
+    <div className="footer-label mono">Say hello</div>
     <RouteLink to="/contact" className="footer-cta" data-cursor="Let’s go">
-      <VariableTypography lines={["Let’s talk"]} radius={320} />
+      <VariableTypography lines={["Get in touch"]} radius={320} />
     </RouteLink>
   </>;
 }

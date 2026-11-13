@@ -17,7 +17,9 @@ export const routes = [
 
 export const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}.webp`;
 const responsiveWidths: Record<string, number> = {
-  'kke-desktop': 1400, 'kke-wireframe': 1100, artstronomy: 1265, abangboy: 1440,
+  'kke-desktop': 1400, 'kke-logo': 1400, 'artstronomy-logo': 1600, 'cs-cover': 1605, 'cs-creators': 1605, 'cs-hoshi': 1605, 'cs-poster': 1605, 'cs-merch': 1605, 'cs-cockpit': 1605, 'cs-website': 1605, 'cs-radio': 1605, 'cs-ar': 1605, 'cs-gallery': 1605, artstronomy: 1265, abangboy: 1440,
+  'namecard-1': 1600, 'namecard-2': 1600, 'namecard-3': 1600, 'namecard-4': 1600,
+  'photo-a': 1500, 'photo-b': 1500, 'photo-c': 1500,
   'artstronomy-radio': 1280, island: 1280, coffee: 1280, headphones: 1268, portrait: 900, 'portfolio-study': 1440,
 };
 export function responsiveImage(name: string) {
@@ -51,12 +53,23 @@ const webProjects: Project[] = original.map((project) => {
   const isExhibition = project.slug === 'artstronomy';
   const cover = { image: isKke ? 'kke-desktop' : project.slug, label: `${project.name} desktop homepage`, position: 'top' };
   const detail = isExhibition
-    ? { image: 'artstronomy-radio', label: 'Radio Scanner', position: '34%' }
+    ? { image: 'artstronomy-radio', label: 'Radio Scanner', position: 'center', contain: true }
     : { image: 'abangboy-detail', label: 'Campaign imagery', position: 'center' };
   const gallery = isKke ? [
     { image: 'kke-mobile', label: 'Mobile', position: 'top' },
-    { image: 'kke-wireframe', label: 'Wireframe', position: 'top' },
-  ] : [{ ...cover, label: 'Homepage' }, { ...detail, label: 'Detail' }];
+    { image: 'kke-logo', label: 'Brand mark', position: 'center' },
+  ] : isExhibition ? [
+    { image: 'cs-website', label: 'Website — desktop & mobile' },
+    { image: 'cs-cockpit', label: 'The cockpit home' },
+    { image: 'cs-radio', label: 'Radio Scanner (beta)' },
+    { image: 'cs-gallery', label: 'Virtual Gallery (beta)' },
+    { image: 'cs-ar', label: 'AR camera concept' },
+    { image: 'cs-hoshi', label: 'Hoshi the mascot' },
+    { image: 'cs-poster', label: 'Poster applications' },
+    { image: 'cs-merch', label: 'Official merchandise' },
+    { image: 'artstronomy-logo', label: 'Wordmark' },
+  ]
+    : [{ ...cover, label: 'Homepage' }, { ...detail, label: 'Detail' }];
   return {
     slug: project.slug,
     name: project.name,
@@ -67,29 +80,65 @@ const webProjects: Project[] = original.map((project) => {
     year: project.slug === 'abangboy' ? '' : '2026',
     summary: project.intro,
     headline: project.heading,
-    cover,
-    preview: isKke ? [gallery[0], cover, gallery[1]] : [cover, detail],
+    cover: isExhibition ? { image: 'cs-cover', label: 'ARTStronomy 2026 case study cover', position: 'center' } : cover,
+    preview: isKke ? [gallery[0], cover, gallery[1]] : isExhibition ? [gallery[0], gallery[1], gallery[2]] : [cover, detail],
     gallery,
     sections: [
       { title: 'Objective', body: project.brief },
       ...project.decisions.map(([title, body]) => ({ title, body })),
       { title: 'Reflection', body: project.reflection },
+      ...(isExhibition ? [{ title: 'Note on visuals', body: 'The wordmark, Hoshi mascot, poster and website come from the original project. Cinematic imagery, application mockups and the AR and quiz concepts were developed in Higgsfield from those assets, and are concept visuals, not installation photography. Radio Scanner and Virtual Gallery are beta experiences.' }] : []),
     ],
   };
 });
 
-const studies: Project = {
-  slug: 'visual-studies', name: 'Visual studies', type: 'Photography & digital imaging',
-  role: 'Image-making', platform: 'Photography & compositing', context: 'Personal studies', year: '',
-  summary: 'A collection of still-image experiments in composition, typography, and photography.',
-  headline: 'Experiments in composition.',
-  cover: { image: 'island', label: 'Floating Islands digital composite', contain: true },
-  preview: [{ image: 'island', label: 'Floating Islands' }, { image: 'coffee', label: 'Iced coffee photography' }],
-  gallery: [{ image: 'coffee', label: 'Photography' }, { image: 'headphones', label: 'Typography' }],
+const photography: Project = {
+  slug: 'photography', name: 'Photography', type: 'Portrait & commercial photography',
+  role: 'Photographer · art direction', platform: 'Photography & retouching', context: 'Personal and assignment work', year: '',
+  summary: 'Portrait and product photography built around simple lighting, strong poses and clean colour.',
+  headline: 'Portraits with a point of view.',
+  cover: { image: 'photo-a', label: 'Studio portrait with a vintage television', position: 'center 30%' },
+  preview: [{ image: 'photo-a', label: 'Portrait' }, { image: 'photo-b', label: 'Portrait' }],
+  gallery: [
+    { image: 'photo-b', label: 'Portrait', position: 'center' },
+    { image: 'photo-c', label: 'Portrait', position: 'center 30%' },
+    { image: 'coffee', label: 'Commercial' },
+  ],
   sections: [
-    { title: 'Floating Islands', body: 'A digital composite exploring scale and an imagined landscape.' },
-    { title: 'Iced Coffee', body: 'A lighting and photography study using ice and fabric as part of the composition.' },
+    { title: 'Portraits', body: 'A studio series using a plain backdrop, retro props and natural poses so the person stays the focus.' },
+    { title: 'Commercial', body: 'A lighting study for an iced coffee, using ice and fabric as part of the composition.' },
+  ],
+};
+
+const namecards: Project = {
+  slug: 'namecard', name: 'Namecard design', type: 'Print & brand stationery',
+  role: 'Graphic design', platform: 'Illustrator + InDesign', context: 'Assignment', year: '',
+  summary: 'A business card concept with front and back layouts, shown in realistic mockups.',
+  headline: 'A small format with a clear hierarchy.',
+  cover: { image: 'namecard-1', label: 'Namecard mockup' },
+  preview: [{ image: 'namecard-1', label: 'Namecard' }, { image: 'namecard-2', label: 'Namecard' }],
+  gallery: [
+    { image: 'namecard-2', label: 'Front and back' },
+    { image: 'namecard-3', label: 'Detail' },
+    { image: 'namecard-4', label: 'Stationery' },
+  ],
+  sections: [
+    { title: 'Objective', body: 'Present contact details clearly on a small card, with a layout that still feels distinctive.' },
+    { title: 'Approach', body: 'Type size, spacing and one accent colour carry the hierarchy, and the mockups check how it reads on paper.' },
+  ],
+};
+
+const styleFrames: Project = {
+  slug: 'style-frames', name: 'Showreel & style frames', type: 'Motion & typography',
+  role: 'Design & motion', platform: 'Photoshop, Illustrator, After Effects', context: 'Personal studies', year: '',
+  summary: 'Style frames and composites that set the look for a motion showreel.',
+  headline: 'Frames that set the tone.',
+  cover: { image: 'headphones', label: 'Metallic Frequencies style frame' },
+  preview: [{ image: 'headphones', label: 'Metallic Frequencies' }, { image: 'island', label: 'Floating Islands' }],
+  gallery: [{ image: 'island', label: 'Floating Islands', contain: true }, { image: 'coffee', label: 'Colour study' }],
+  sections: [
     { title: 'Metallic Frequencies', body: 'A typography study exploring depth, form, and a metallic treatment.' },
+    { title: 'Floating Islands', body: 'A digital composite exploring scale and an imagined landscape.' },
   ],
 };
 
@@ -107,7 +156,7 @@ const thisSite: Project = {
   ],
 };
 
-export const featured = [...webProjects, studies];
+export const featured = [...webProjects, photography, namecards, styleFrames];
 export const projects = [...featured, thisSite];
 
 export const services = [
@@ -115,6 +164,7 @@ export const services = [
   { slug: 'wordpress', name: 'WordPress', copy: 'Elementor builds for service and brand websites.' },
   { slug: 'interfaces', name: 'UI / UX', copy: 'Interface design from wireframes to responsive screens.' },
   { slug: 'imaging', name: 'Digital imaging', copy: 'Photography and composites for visual storytelling.' },
+  { slug: 'ai', name: 'AI & automation', copy: 'AI tools and simple automations to speed up design work.' },
 ];
 
 export function routeTitle(path: string) {

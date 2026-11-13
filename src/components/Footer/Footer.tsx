@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="collected-footer">
       <div className="collected-panels">
         <div className="collected-contact">
-          <h2>Have a project in mind? Let’s talk.</h2>
+          <h2>Open to internships from January 2027.</h2>
           <div><span className="collected-label">Email</span><a href={`mailto:${identity.email}`}>{identity.email}</a></div>
         </div>
         <div className="collected-details">

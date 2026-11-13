@@ -145,8 +145,8 @@ export function About() {
           </div>
           <div className="duda-copy">
             <p>Hi, I’m Jonah. I’m a Graphic Design &amp; Multimedia undergraduate at UTAR, based in Kajang.</p>
-            <p>I work across web design, photography and digital imaging. I’m interested in the space between a useful interface and a memorable image.</p>
-            <p>My work includes a cleaning-service website concept, a WordPress build for AbangBoy and web design for the collaborative ARTStronomy exhibition.</p>
+            <p>I work across web design, photography, print and digital imaging, and I use AI tools to speed up my workflow. I’m interested in the space between a useful interface and a memorable image.</p>
+            <p>My work includes a cleaning-service website concept, a WordPress build for AbangBoy and web design for the collaborative ARTStronomy exhibition, alongside photography and namecard design.</p>
           </div>
         </section>
 
