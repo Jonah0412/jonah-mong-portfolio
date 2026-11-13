@@ -87,7 +87,7 @@ export function DragGallery() {
           drag.current.speed = 0;
           event.currentTarget.scrollBy({ left: event.key === 'ArrowRight' ? 330 : -330, behavior: reduced ? 'instant' : 'smooth' });
         }}>
-        {featured.flatMap((project, index) => project.gallery.map(view => (
+        {featured.flatMap((project, index) => (project.home ?? project.gallery.slice(0, 2)).map(view => (
           <RouteLink className="gallery-item" to={projectPath(project.slug)} key={`${project.slug}-${view.label}`} data-cursor="Look" draggable={false}>
             <div className="gallery-frame">
               <img {...responsiveImage(view.image)} sizes="(max-width: 590px) 72vw, 29vw" alt={`${project.name} — ${view.label}`} loading="lazy" draggable={false} style={{ objectPosition: view.position ?? 'center' }} />

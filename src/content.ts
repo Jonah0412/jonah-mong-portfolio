@@ -48,6 +48,7 @@ export type Project = {
   gallery: View[];
   sections: { title: string; body: string }[];
   links?: { label: string; href: string }[];
+  home?: View[];
 };
 
 const webProjects: Project[] = original.map((project) => {
@@ -88,6 +89,7 @@ const webProjects: Project[] = original.map((project) => {
       ]
       : isKke ? [{ label: 'Visit website', href: 'https://jonah0412.github.io/kke-cleaning-services/' }]
       : [{ label: 'Visit live site', href: 'https://abgboygroup.com/homepage/' }],
+    home: isKke ? [cover, gallery[0]] : isExhibition ? [gallery[1], gallery[2]] : undefined,
     cover: isExhibition ? { image: 'cs-cover', label: 'ARTStronomy 2026 case study cover', position: 'center' } : cover,
     preview: isKke ? [gallery[0], cover, gallery[1]] : isExhibition ? [gallery[0], gallery[1], gallery[2]] : [cover, detail],
     gallery,
