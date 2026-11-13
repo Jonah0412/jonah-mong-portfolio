@@ -17,7 +17,7 @@ export const routes = [
 
 export const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}.webp`;
 const responsiveWidths: Record<string, number> = {
-  'kke-desktop': 1400, 'kke-logo': 1400, 'artstronomy-logo': 1600, 'cs-cover': 1605, 'cs-creators': 1605, 'cs-hoshi': 1605, 'cs-poster': 1605, 'cs-merch': 1605, 'cs-cockpit': 1605, 'cs-website': 1605, 'cs-radio': 1605, 'cs-ar': 1605, 'cs-gallery': 1605, 'showreel-a': 1600, 'typeplay-a': 1600, 'typeplay-b': 1600, 'typeplay-c': 1600, 'art-a': 1600, 'showreel-b': 1600, artstronomy: 1265, abangboy: 1440,
+  'kke-desktop': 1400, 'kke-logo': 1400, 'artstronomy-logo': 1600, 'cs-cover': 1605, 'cs-creators': 1605, 'cs-hoshi': 1605, 'cs-poster': 1605, 'cs-merch': 1605, 'cs-cockpit': 1605, 'cs-website': 1605, 'cs-radio': 1605, 'cs-ar': 1605, 'cs-gallery': 1605, 'showreel-a': 1600, 'typeplay-a': 1600, 'typeplay-b': 1600, 'typeplay-c': 1600, 'art-a': 1600, 'mwc-a': 1600, 'mwc-b': 1600, 'showreel-b': 1600, artstronomy: 1265, abangboy: 1440,
   'namecard-1': 1600, 'namecard-2': 1600, 'namecard-3': 1600, 'namecard-4': 1600,
   'photo-a': 1500, 'photo-b': 1500, 'photo-c': 1500,
   'artstronomy-radio': 1280, island: 1280, coffee: 1280, headphones: 1268, portrait: 900, 'portfolio-study': 1440,
@@ -151,6 +151,22 @@ const digitalArt: Project = {
   ],
 };
 
+const mwc: Project = {
+  slug: 'mwc', name: 'Mobile World Congress', type: 'Motion typography',
+  role: 'Motion design', platform: 'After Effects', context: 'Assignment', year: '2025',
+  summary: 'A 30-second kinetic typography piece for Mobile World Congress.',
+  headline: 'Type in motion.',
+  cover: { image: 'mwc-a', label: 'Mobile World Congress motion frames' },
+  preview: [{ image: 'mwc-a', label: 'MWC' }, { image: 'mwc-b', label: 'MWC' }],
+  gallery: [{ image: 'mwc-a', label: 'Opening frames' }, { image: 'mwc-b', label: 'Typography frames' }],
+  video: { src: 'mwc.mp4', poster: 'mwc-poster' },
+  links: [{ label: 'View on Behance', href: 'https://www.behance.net/gallery/219263647/Mobile-World-Congress-%28MWC%29' }],
+  sections: [
+    { title: 'Concept', body: 'Letters bend, stack and spin to carry a message about technology and connection, set against a soft gradient that echoes a phone screen.' },
+    { title: 'Approach', body: 'Each scene gives one word its own movement and colour, so the typography does the storytelling without extra imagery.' },
+  ],
+};
+
 const namecards: Project = {
   slug: 'namecard', name: 'Namecard design', type: 'Print & brand stationery',
   role: 'Graphic design', platform: 'Illustrator + InDesign', context: 'Assignment', year: '',
@@ -199,7 +215,7 @@ const thisSite: Project = {
   ],
 };
 
-export const featured = [...webProjects, typePlay, photography, digitalArt, namecards, styleFrames];
+export const featured = [...webProjects, typePlay, photography, digitalArt, mwc, namecards, styleFrames];
 export const projects = [...featured, thisSite];
 
 export const services = [
