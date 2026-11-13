@@ -137,13 +137,14 @@ const typePlay: Project = {
 };
 
 const digitalArt: Project = {
-  slug: 'digital-art', name: 'Digital art studies', type: 'Digital imaging & typography',
+  slug: 'digital-art', name: 'Digital art & manipulation', type: 'Digital imaging & typography',
   role: 'Image-making', platform: 'Photoshop & compositing', context: 'Personal studies', year: '2025',
   summary: 'Two studies in composition: an imagined floating landscape and a metallic type treatment.',
   headline: 'Experiments in composition.',
   cover: { image: 'art-a', label: 'Floating Islands and Metallic Frequencies' },
   preview: [{ image: 'art-a', label: 'Digital art' }, { image: 'art-a', label: 'Digital art' }],
   gallery: [],
+  links: [{ label: 'View on Behance', href: 'https://www.behance.net/gallery/230475915/SURREAL-DREAMSCAPE' }],
   sections: [
     { title: 'Floating Islands', body: 'A digital composite exploring scale and an imagined landscape.' },
     { title: 'Metallic Frequencies', body: 'A typography study exploring depth, form, and a metallic treatment.' },
