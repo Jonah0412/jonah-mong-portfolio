@@ -17,7 +17,7 @@ export const routes = [
 
 export const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}.webp`;
 const responsiveWidths: Record<string, number> = {
-  'kke-desktop': 1400, 'kke-logo': 1400, 'artstronomy-logo': 1600, 'cs-cover': 1605, 'cs-creators': 1605, 'cs-hoshi': 1605, 'cs-poster': 1605, 'cs-merch': 1605, 'cs-cockpit': 1605, 'cs-website': 1605, 'cs-radio': 1605, 'cs-ar': 1605, 'cs-gallery': 1605, 'showreel-a': 1600, 'showreel-b': 1600, artstronomy: 1265, abangboy: 1440,
+  'kke-desktop': 1400, 'kke-logo': 1400, 'artstronomy-logo': 1600, 'cs-cover': 1605, 'cs-creators': 1605, 'cs-hoshi': 1605, 'cs-poster': 1605, 'cs-merch': 1605, 'cs-cockpit': 1605, 'cs-website': 1605, 'cs-radio': 1605, 'cs-ar': 1605, 'cs-gallery': 1605, 'showreel-a': 1600, 'typeplay-a': 1600, 'typeplay-b': 1600, 'typeplay-c': 1600, 'art-a': 1600, 'showreel-b': 1600, artstronomy: 1265, abangboy: 1440,
   'namecard-1': 1600, 'namecard-2': 1600, 'namecard-3': 1600, 'namecard-4': 1600,
   'photo-a': 1500, 'photo-b': 1500, 'photo-c': 1500,
   'artstronomy-radio': 1280, island: 1280, coffee: 1280, headphones: 1268, portrait: 900, 'portfolio-study': 1440,
@@ -122,6 +122,34 @@ const photography: Project = {
   ],
 };
 
+const typePlay: Project = {
+  slug: 'type-play', name: 'Type Play', type: 'Social media & copywriting',
+  role: 'Graphic design · copywriting', platform: 'Photoshop, Illustrator', context: 'Assignment', year: '2025',
+  summary: 'A series of social media posts that use expressive type and short, playful copy.',
+  headline: 'Letters that do the talking.',
+  cover: { image: 'typeplay-a', label: 'Type Play social posts' },
+  preview: [{ image: 'typeplay-a', label: 'Type Play' }, { image: 'typeplay-b', label: 'Type Play' }],
+  gallery: [{ image: 'typeplay-b', label: 'Posts' }, { image: 'typeplay-c', label: 'Posts' }],
+  sections: [
+    { title: 'Objective', body: 'Make a feed of posts where the lettering carries the idea, for telecom, audio and phone themed briefs.' },
+    { title: 'Approach', body: 'Each post pairs one short line of copy with a distinct type treatment: pixel type, chrome lettering, repeating patterns and dot-matrix glyphs.' },
+  ],
+};
+
+const digitalArt: Project = {
+  slug: 'digital-art', name: 'Digital art studies', type: 'Digital imaging & typography',
+  role: 'Image-making', platform: 'Photoshop & compositing', context: 'Personal studies', year: '2025',
+  summary: 'Two studies in composition: an imagined floating landscape and a metallic type treatment.',
+  headline: 'Experiments in composition.',
+  cover: { image: 'art-a', label: 'Floating Islands and Metallic Frequencies' },
+  preview: [{ image: 'art-a', label: 'Digital art' }, { image: 'art-a', label: 'Digital art' }],
+  gallery: [],
+  sections: [
+    { title: 'Floating Islands', body: 'A digital composite exploring scale and an imagined landscape.' },
+    { title: 'Metallic Frequencies', body: 'A typography study exploring depth, form, and a metallic treatment.' },
+  ],
+};
+
 const namecards: Project = {
   slug: 'namecard', name: 'Namecard design', type: 'Print & brand stationery',
   role: 'Graphic design', platform: 'Illustrator + InDesign', context: 'Assignment', year: '',
@@ -170,7 +198,7 @@ const thisSite: Project = {
   ],
 };
 
-export const featured = [...webProjects, photography, namecards, styleFrames];
+export const featured = [...webProjects, typePlay, photography, digitalArt, namecards, styleFrames];
 export const projects = [...featured, thisSite];
 
 export const services = [
