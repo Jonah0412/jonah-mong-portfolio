@@ -28,7 +28,9 @@
 }
 .romans-hero :is(.romans-down,.romans-play,.romans-close):hover { background: var(--midnight); color: var(--cream); }
 .romans-media { position: absolute; z-index: 2; top: 0; left: 0; width: 0; height: 0; overflow: clip; background: var(--navy); }
+.romans-media:has(video[poster$='showreel-poster.webp']) { background: #9a101e; }
 .romans-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.romans-media video[poster$='showreel-poster.webp'] { object-fit: contain; }
 .romans-play {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%);
   width: 56px; height: 56px; font-size: 17px; opacity: 0; pointer-events: none;
