@@ -41,6 +41,9 @@
 .romans-stage[data-expanded='true'] .romans-bottom { visibility: hidden; }
 .romans-dialog { position: fixed; inset: 0; margin: auto; max-width: none; max-height: none; width: 100%; height: 100%; color: inherit; background: transparent; }
 .romans-dialog[open] { display: grid; place-items: center; }
+.romans-dialog, .romans-dialog * { cursor: auto !important; }
+.romans-dialog button, .romans-dialog video { cursor: pointer !important; }
+html:has(.romans-dialog[open]) .custom-cursor { display: none; }
 .romans-dialog::backdrop { background: color-mix(in srgb, var(--midnight) 94%, transparent); }
 .romans-player { position: relative; width: min(90vw, 115vh); }
 .romans-player:has(video[poster$='showreel-poster.webp']) { width: min(88vw, 46svh); }
