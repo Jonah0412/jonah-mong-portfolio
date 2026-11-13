@@ -82,8 +82,12 @@ const webProjects: Project[] = original.map((project) => {
     year: project.slug === 'abangboy' ? '' : '2026',
     summary: project.intro,
     headline: project.heading,
-    links: isExhibition ? [{ label: 'Case study PDF', href: file('pdf/ARTStronomy-2026-Case-Study.pdf') }]
-      : project.slug === 'abangboy' ? [{ label: 'Visit live site', href: 'https://abgboygroup.com/homepage/' }] : undefined,
+    links: isExhibition ? [
+        { label: 'Visit website', href: 'https://artstronomy2026.github.io/artstronomy-2026/' },
+        { label: 'Case study PDF', href: file('pdf/ARTStronomy-2026-Case-Study.pdf') },
+      ]
+      : isKke ? [{ label: 'Visit website', href: 'https://jonah0412.github.io/kke-cleaning-services/' }]
+      : [{ label: 'Visit live site', href: 'https://abgboygroup.com/homepage/' }],
     cover: isExhibition ? { image: 'cs-cover', label: 'ARTStronomy 2026 case study cover', position: 'center' } : cover,
     preview: isKke ? [gallery[0], cover, gallery[1]] : isExhibition ? [gallery[0], gallery[1], gallery[2]] : [cover, detail],
     gallery,
@@ -108,6 +112,7 @@ const photography: Project = {
     { image: 'photo-c', label: 'Portrait', position: 'center 30%' },
     { image: 'coffee', label: 'Commercial' },
   ],
+  links: [{ label: 'View on Behance', href: 'https://www.behance.net/gallery/248386559/Portrait-Photography' }],
   sections: [
     { title: 'Portraits', body: 'A studio series using a plain backdrop, retro props and natural poses so the person stays the focus.' },
     { title: 'Commercial', body: 'A lighting study for an iced coffee, using ice and fabric as part of the composition.' },
