@@ -3,7 +3,7 @@ import { asset, responsiveImage, number, projectPath, projects } from '../conten
 import { RouteLink } from '../components/Navigation/RouteLink';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 
-const thumbnails = ['photo-a', 'namecard-1', 'headphones'];
+const thumbnails = ['photo-a', 'namecard-1', 'showreel-poster'];
 
 export function Work() {
   const grid = useRef<HTMLDivElement>(null);

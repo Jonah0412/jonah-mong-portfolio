@@ -17,7 +17,7 @@ export const routes = [
 
 export const asset = (name: string) => `${import.meta.env.BASE_URL}assets/${name}.webp`;
 const responsiveWidths: Record<string, number> = {
-  'kke-desktop': 1400, 'kke-logo': 1400, 'artstronomy-logo': 1600, 'cs-cover': 1605, 'cs-creators': 1605, 'cs-hoshi': 1605, 'cs-poster': 1605, 'cs-merch': 1605, 'cs-cockpit': 1605, 'cs-website': 1605, 'cs-radio': 1605, 'cs-ar': 1605, 'cs-gallery': 1605, artstronomy: 1265, abangboy: 1440,
+  'kke-desktop': 1400, 'kke-logo': 1400, 'artstronomy-logo': 1600, 'cs-cover': 1605, 'cs-creators': 1605, 'cs-hoshi': 1605, 'cs-poster': 1605, 'cs-merch': 1605, 'cs-cockpit': 1605, 'cs-website': 1605, 'cs-radio': 1605, 'cs-ar': 1605, 'cs-gallery': 1605, 'showreel-a': 1600, 'showreel-b': 1600, artstronomy: 1265, abangboy: 1440,
   'namecard-1': 1600, 'namecard-2': 1600, 'namecard-3': 1600, 'namecard-4': 1600,
   'photo-a': 1500, 'photo-b': 1500, 'photo-c': 1500,
   'artstronomy-radio': 1280, island: 1280, coffee: 1280, headphones: 1268, portrait: 900, 'portfolio-study': 1440,
@@ -49,6 +49,7 @@ export type Project = {
   sections: { title: string; body: string }[];
   links?: { label: string; href: string }[];
   home?: View[];
+  video?: { src: string; poster: string };
 };
 
 const webProjects: Project[] = original.map((project) => {
@@ -140,16 +141,18 @@ const namecards: Project = {
 };
 
 const styleFrames: Project = {
-  slug: 'style-frames', name: 'Showreel & style frames', type: 'Motion & typography',
-  role: 'Design & motion', platform: 'Photoshop, Illustrator, After Effects', context: 'Personal studies', year: '',
-  summary: 'Style frames and composites that set the look for a motion showreel.',
-  headline: 'Frames that set the tone.',
-  cover: { image: 'headphones', label: 'Metallic Frequencies style frame' },
-  preview: [{ image: 'headphones', label: 'Metallic Frequencies' }, { image: 'island', label: 'Floating Islands' }],
-  gallery: [{ image: 'island', label: 'Floating Islands', contain: true }, { image: 'coffee', label: 'Colour study' }],
+  slug: 'style-frames', name: 'Showreel & style frames', type: 'Motion & advertising',
+  role: 'Design & motion', platform: 'Photoshop, Illustrator, After Effects', context: 'Personal and assignment work', year: '2026',
+  summary: 'A 30-second showreel of advertising frames, motion UI, product shots and web design.',
+  headline: 'Thirty seconds of motion.',
+  cover: { image: 'showreel-a', label: 'Showreel frames', position: 'center' },
+  preview: [{ image: 'showreel-a', label: 'Showreel' }, { image: 'showreel-b', label: 'Showreel' }],
+  gallery: [{ image: 'showreel-a', label: 'Advertising frames' }, { image: 'showreel-b', label: 'Product and web design' }],
+  video: { src: 'showreel.mp4', poster: 'showreel-poster' },
   sections: [
-    { title: 'Metallic Frequencies', body: 'A typography study exploring depth, form, and a metallic treatment.' },
-    { title: 'Floating Islands', body: 'A digital composite exploring scale and an imagined landscape.' },
+    { title: 'Advertising', body: 'Bold type, simple layouts and quick cuts for fashion and brand advertisements, including a style frame for Shell.' },
+    { title: 'Motion UI', body: 'Interface and product screens animated to show how an app or website moves.' },
+    { title: 'Product and web', body: 'Product shots and web design pages edited into one short, fast reel.' },
   ],
 };
 

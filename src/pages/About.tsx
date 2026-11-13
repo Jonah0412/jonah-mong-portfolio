@@ -4,7 +4,7 @@ import { useReducedMotion } from '../hooks/useReducedMotion';
 import './about.css';
 
 const title = ['About', 'Jonah Mong'];
-const letterImages = ['island', 'coffee', 'headphones', 'artstronomy', 'kke-desktop', 'abangboy'];
+const letterImages = ['photo-a', 'coffee', 'namecard-1', 'artstronomy', 'kke-desktop', 'abangboy'];
 
 const utar = 'UTAR – Universiti Tunku Abdul Rahman';
 const sungaiLong = 'Sungai Long, Kajang, Selangor';
